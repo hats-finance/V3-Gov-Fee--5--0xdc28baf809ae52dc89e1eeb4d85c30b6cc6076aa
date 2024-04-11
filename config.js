@@ -164,11 +164,26 @@ module.exports = {
             "0x1885B7c7a3AE1F35BA71C0392C13153A95c4914f"
         ],
         // "hatToken": "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238", // USDC
+        "hatArbitratorConf": {
+            "expertCommittee": "0xFA6579F3Bb1793eFaB541de06763b872E11bfCBe",
+            "token": "0xbdb34BB8665510d331FacAAaA0eeAe994a5B6612",
+            "bondsNeededToStartDispute": "10000000000000000000",
+            "minBondAmount": "1000000000000000000",
+            "resolutionChallengePeriod": 60 * 60 * 24 * 7,
+            "submitClaimRequestReviewPeriod": 60 * 15,
+        },
+        "hatKlerosConnectorConf": {
+            "klerosArbitrator": "0x90992fb4E15ce0C59aEFfb376460Fda4Ee19C879",
+            "arbitratorExtraData": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003",
+            "metaEvidence": "ipfs/X",
+            "winnerMultiplier": 3000,
+            "loserMultiplier": 7000
+        },
         "hatVaultsRegistryConf": {
             // "swapToken": "0x1c7D4B196Cb0C7B01d743Fbc6116a902379C7238", // USDC
             "bountyGovernanceHAT": "1000",
             "bountyHackerHATVested": "0",
-            "useKleros": false
+            "useKleros": true
         },
         "hatVaultsNFTConf": {
             "merkleTreeIPFSRef": "",
