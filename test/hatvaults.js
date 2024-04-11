@@ -921,8 +921,8 @@ contract("HatVaults", (accounts) => {
         arbitrator: accounts[2],
         maxBounty: maxBounty,
         bountySplit: bountySplit,
-        bountyGovernanceHAT: 1000,
-        bountyHackerHATVested: 1001,
+        bountyGovernanceHAT: 1500,
+        bountyHackerHATVested: 2001,
         vestingDuration: 86400,
         vestingPeriods: 10
         }
