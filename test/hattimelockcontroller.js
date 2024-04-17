@@ -8,6 +8,8 @@ const TokenLockFactory = artifacts.require("./TokenLockFactory.sol");
 const HATTokenLock = artifacts.require("./HATTokenLock.sol");
 const RewardController = artifacts.require("./RewardController.sol");
 const HATGovernanceArbitrator = artifacts.require("./HATGovernanceArbitrator.sol");
+const AutomatedFeeForwarder = artifacts.require("./AutomatedFeeForwarder.sol");
+const IHATTimelockController = new ethers.utils.Interface(HATTimelockController.abi);
 const utils = require("./utils.js");
 
 const { deployHATVaults } = require("../scripts/deployments/hatvaultsregistry-deploy");
@@ -171,6 +173,150 @@ contract("HatTimelockController", (accounts) => {
         accounts[0]
       ),
       true
+    );
+  });
+
+  it("swapAndSend mulltiple tokens with automated fee forwarder", async () => {
+    await setup(accounts, 60 * 60 * 24, 0, 8000, [8000, 2000, 0], [1000, 0]);
+
+    const stakingToken2 = await ERC20Mock.new("Staking", "STK");
+    let vault2 = await HATVault.at((await hatVaultsRegistry.createVault({
+        asset: stakingToken2.address,
+        owner: await hatVaultsRegistry.owner(),
+        committee: accounts[1],
+        name: "VAULT",
+        symbol: "VLT",
+        rewardControllers: [rewardController.address],
+        maxBounty: 8000,
+        bountySplit: [8000, 2000, 0],
+        descriptionHash: "_descriptionHash",
+        vestingDuration: 86400,
+        vestingPeriods: 10,
+        isPaused: false
+    })).receipt.rawLogs[0].address);
+    
+    await vault2.committeeCheckIn({ from: accounts[1] });
+
+    var staker = accounts[3];
+    var beneficiary1 = accounts[4];
+    await stakingToken.approve(vault.address, web3.utils.toWei("1"), {
+      from: staker,
+    });
+    await stakingToken.mint(staker, web3.utils.toWei("1"));
+    await vault.deposit(web3.utils.toWei("1"), staker, { from: staker });
+
+    await stakingToken2.approve(vault2.address, web3.utils.toWei("1"), {
+      from: staker,
+    });
+    await stakingToken2.mint(staker, web3.utils.toWei("1"));
+    await vault2.deposit(web3.utils.toWei("1"), staker, { from: staker });
+
+    await utils.increaseTime(7 * 24 * 3600);
+
+    await advanceToSafetyPeriod(hatVaultsRegistry);
+
+    let tx = await vault.submitClaim(
+      beneficiary1,
+      8000,
+      "description hash",
+      {
+        from: accounts[1],
+      }
+    );
+
+    let claimId = tx.logs[0].args._claimId;
+
+    await hatTimelockController.approveClaim(arbitratorContract.address, vault.address, claimId);
+
+    tx = await vault2.submitClaim(
+      beneficiary1,
+      7000,
+      "description hash",
+      {
+        from: accounts[1],
+      }
+    );
+
+    claimId = tx.logs[0].args._claimId;
+
+    await hatTimelockController.approveClaim(arbitratorContract.address, vault2.address, claimId);
+
+    let balanceOfGovBefore = await stakingToken.balanceOf(accounts[0]);
+    let balance2OfGovBefore = await stakingToken2.balanceOf(accounts[0]);
+
+    let automatedFeeForwarder = await AutomatedFeeForwarder.new(hatTimelockController.address, hatVaultsRegistry.address, accounts[0]);
+
+    let data = IHATTimelockController.encodeFunctionData("grantRole", [
+        await hatTimelockController.PROPOSER_ROLE(),
+        automatedFeeForwarder.address
+    ]);
+
+    await hatTimelockController.schedule(
+      hatTimelockController.address,
+      "0",
+      data,
+      "0x0",
+      "0x0",
+      hatGovernanceDelay
+    );
+
+    await utils.increaseTime(hatGovernanceDelay);
+
+    await hatTimelockController.execute(
+      hatTimelockController.address,
+      "0",
+      data,
+      "0x0",
+      "0x0"
+    );
+
+    let amount = await hatVaultsRegistry.governanceHatReward(stakingToken.address);
+    let amount2 = await hatVaultsRegistry.governanceHatReward(stakingToken2.address);
+
+    tx = await automatedFeeForwarder.forwardFees([stakingToken.address, stakingToken2.address]);
+
+    let logs = await hatVaultsRegistry.getPastEvents('SwapAndSend', {
+      fromBlock: tx.blockNumber,
+      toBlock: tx.blockNumber
+    });
+
+    assert.equal(
+      await stakingToken.allowance(hatVaultsRegistry.address, await automatedFeeForwarder.address),
+      0
+    );
+    assert.equal(
+      await stakingToken2.allowance(hatVaultsRegistry.address, await automatedFeeForwarder.address),
+      0
+    );
+    assert.equal(logs[0].event, "SwapAndSend");
+    assert.equal(logs[0].args._beneficiary, hatTimelockController.address);
+    assert.equal(logs[0].args._tokenLock, "0x0000000000000000000000000000000000000000");
+    assert.equal(
+      (await stakingToken.balanceOf(accounts[0])).sub(balanceOfGovBefore).toString(),
+      amount.toString()
+    );
+    assert.equal(
+      (await stakingToken.balanceOf(hatVaultsRegistry.address)).toString(),
+      "0"
+    );
+    assert.equal(
+      logs[0].args._amountSent.toString(),
+      "0"
+    );
+    assert.equal(logs[1].event, "SwapAndSend");
+    assert.equal(logs[1].args._beneficiary, hatTimelockController.address);
+    assert.equal(logs[1].args._tokenLock, "0x0000000000000000000000000000000000000000");
+    assert.equal(
+      (await stakingToken2.balanceOf(accounts[0])).sub(balance2OfGovBefore).toString(),
+      amount2.toString()
+    );
+    assert.equal(
+      (await stakingToken2.balanceOf(hatVaultsRegistry.address)).toString(),
+      "0"
+    );
+    assert.equal(
+      logs[1].args._amountSent.toString(),
+      "0"
     );
   });
 
