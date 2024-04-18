@@ -6,10 +6,10 @@ module.exports = {
             "0xfe46D9193BBCE8c590298d77b6f8dB0e619c7FF7",
             "0xe24886AC31c25B544092542aD55aa484FbBF506B",
             "0xe707ABbDA8146d2d3f3341E9B375Cb1fc78526d8",
-            "0x9Fb3d86157a9e2dC2a771C297f88FA9784fa4e31",
+            "0x335DaFb8e708151e7e91C9Fe6F4AF9755877c205",
             "0x2B6656e212f315D3C2DD477FE7EBFb3A86bb1c94",
             "0xF6aEF099e4473E08bed75E0BB1252C4cdAd96416",
-            "0xd714Dd60e22BbB1cbAFD0e40dE5Cfa7bBDD3F3C8"
+            "0x42eefBC05794e71a0f7e7B63E5EcB52320345eBE"
         ],
         "rewardControllersConf": [],
         "hatToken": "0x07865c6E87B9F70255377e024ace6630C1Eaa37F", // USDC
@@ -31,10 +31,10 @@ module.exports = {
             "0xfe46D9193BBCE8c590298d77b6f8dB0e619c7FF7",
             "0xe24886AC31c25B544092542aD55aa484FbBF506B",
             "0xe707ABbDA8146d2d3f3341E9B375Cb1fc78526d8",
-            "0x9Fb3d86157a9e2dC2a771C297f88FA9784fa4e31",
+            "0x335DaFb8e708151e7e91C9Fe6F4AF9755877c205",
             "0x2B6656e212f315D3C2DD477FE7EBFb3A86bb1c94",
             "0xF6aEF099e4473E08bed75E0BB1252C4cdAd96416",
-            "0xd714Dd60e22BbB1cbAFD0e40dE5Cfa7bBDD3F3C8"
+            "0x42eefBC05794e71a0f7e7B63E5EcB52320345eBE"
         ],
         "rewardControllersConf": [],
         "hatToken": "0x07865c6E87B9F70255377e024ace6630C1Eaa37F", // USDC
@@ -173,10 +173,10 @@ module.exports = {
             "0xfe46D9193BBCE8c590298d77b6f8dB0e619c7FF7",
             "0xe24886AC31c25B544092542aD55aa484FbBF506B",
             "0xe707ABbDA8146d2d3f3341E9B375Cb1fc78526d8",
-            "0x9Fb3d86157a9e2dC2a771C297f88FA9784fa4e31",
+            "0x335DaFb8e708151e7e91C9Fe6F4AF9755877c205",
             "0x2B6656e212f315D3C2DD477FE7EBFb3A86bb1c94",
             "0xF6aEF099e4473E08bed75E0BB1252C4cdAd96416",
-            "0xd714Dd60e22BbB1cbAFD0e40dE5Cfa7bBDD3F3C8"
+            "0x42eefBC05794e71a0f7e7B63E5EcB52320345eBE"
         ],
         "rewardControllersConf": [],
         "hatToken": "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174", // USDC
@@ -201,7 +201,7 @@ module.exports = {
             "0x335DaFb8e708151e7e91C9Fe6F4AF9755877c205",
             "0x2B6656e212f315D3C2DD477FE7EBFb3A86bb1c94",
             "0xF6aEF099e4473E08bed75E0BB1252C4cdAd96416",
-            "0xd714Dd60e22BbB1cbAFD0e40dE5Cfa7bBDD3F3C8"
+            "0x42eefBC05794e71a0f7e7B63E5EcB52320345eBE"
         ],
         "rewardControllersConf": [],
         "hatToken": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48", // USDC
@@ -223,10 +223,10 @@ module.exports = {
             "0xfe46D9193BBCE8c590298d77b6f8dB0e619c7FF7",
             "0xe24886AC31c25B544092542aD55aa484FbBF506B",
             "0xe707ABbDA8146d2d3f3341E9B375Cb1fc78526d8",
-            "0x9Fb3d86157a9e2dC2a771C297f88FA9784fa4e31",
+            "0x335DaFb8e708151e7e91C9Fe6F4AF9755877c205",
             "0x2B6656e212f315D3C2DD477FE7EBFb3A86bb1c94",
             "0xF6aEF099e4473E08bed75E0BB1252C4cdAd96416",
-            "0xd714Dd60e22BbB1cbAFD0e40dE5Cfa7bBDD3F3C8"
+            "0x42eefBC05794e71a0f7e7B63E5EcB52320345eBE"
         ],
         "rewardControllersConf": [],
         "hatToken": "0x7F5c764cBc14f9669B88837ca1490cCa17c31607", // USDC
@@ -251,7 +251,7 @@ module.exports = {
             "0x335DaFb8e708151e7e91C9Fe6F4AF9755877c205",
             "0x2B6656e212f315D3C2DD477FE7EBFb3A86bb1c94",
             "0xF6aEF099e4473E08bed75E0BB1252C4cdAd96416",
-            "0xd714Dd60e22BbB1cbAFD0e40dE5Cfa7bBDD3F3C8"
+            "0x42eefBC05794e71a0f7e7B63E5EcB52320345eBE"
         ],
         "rewardControllersConf": [],
         "hatToken": "0xFF970A61A04b1cA14834A43f5dE4533eBDDB5CC8", // USDC
@@ -264,7 +264,9 @@ module.exports = {
             "merkleTreeIPFSRef": "",
             "root": null,
             "deadline": null
-        }
+        },
+        "deployHackersNFT": false,
+        "deployVaultsNFT": false
     },
     "bnb": {
         "governance": "0xbFBC2Ab80bD0A12258db952739238e403Be01ece",
@@ -273,10 +275,10 @@ module.exports = {
             "0xfe46D9193BBCE8c590298d77b6f8dB0e619c7FF7",
             "0xe24886AC31c25B544092542aD55aa484FbBF506B",
             "0xe707ABbDA8146d2d3f3341E9B375Cb1fc78526d8",
-            "0x9Fb3d86157a9e2dC2a771C297f88FA9784fa4e31",
+            "0x335DaFb8e708151e7e91C9Fe6F4AF9755877c205",
             "0x2B6656e212f315D3C2DD477FE7EBFb3A86bb1c94",
             "0xF6aEF099e4473E08bed75E0BB1252C4cdAd96416",
-            "0xd714Dd60e22BbB1cbAFD0e40dE5Cfa7bBDD3F3C8"
+            "0x42eefBC05794e71a0f7e7B63E5EcB52320345eBE"
         ],
         "rewardControllersConf": [],
         "hatToken": "0x8ac76a51cc950d9822d68b83fe1ad97b32cd580d", // USDC
@@ -298,10 +300,10 @@ module.exports = {
             "0xfe46D9193BBCE8c590298d77b6f8dB0e619c7FF7",
             "0xe24886AC31c25B544092542aD55aa484FbBF506B",
             "0xe707ABbDA8146d2d3f3341E9B375Cb1fc78526d8",
-            "0x9Fb3d86157a9e2dC2a771C297f88FA9784fa4e31",
+            "0x335DaFb8e708151e7e91C9Fe6F4AF9755877c205",
             "0x2B6656e212f315D3C2DD477FE7EBFb3A86bb1c94",
             "0xF6aEF099e4473E08bed75E0BB1252C4cdAd96416",
-            "0xd714Dd60e22BbB1cbAFD0e40dE5Cfa7bBDD3F3C8"
+            "0x42eefBC05794e71a0f7e7B63E5EcB52320345eBE"
         ],
         "rewardControllersConf": [],
         "hatToken": "0x4200000000000000000000000000000000000006", // WETH
@@ -323,10 +325,10 @@ module.exports = {
             "0xfe46D9193BBCE8c590298d77b6f8dB0e619c7FF7",
             "0xe24886AC31c25B544092542aD55aa484FbBF506B",
             "0xe707ABbDA8146d2d3f3341E9B375Cb1fc78526d8",
-            "0x9Fb3d86157a9e2dC2a771C297f88FA9784fa4e31",
+            "0x335DaFb8e708151e7e91C9Fe6F4AF9755877c205",
             "0x2B6656e212f315D3C2DD477FE7EBFb3A86bb1c94",
             "0xF6aEF099e4473E08bed75E0BB1252C4cdAd96416",
-            "0xd714Dd60e22BbB1cbAFD0e40dE5Cfa7bBDD3F3C8"
+            "0x42eefBC05794e71a0f7e7B63E5EcB52320345eBE"
         ],
         "rewardControllersConf": [],
         "hatToken": "NEED ADDRESS", // USDC
@@ -348,10 +350,10 @@ module.exports = {
             "0xfe46D9193BBCE8c590298d77b6f8dB0e619c7FF7",
             "0xe24886AC31c25B544092542aD55aa484FbBF506B",
             "0xe707ABbDA8146d2d3f3341E9B375Cb1fc78526d8",
-            "0x9Fb3d86157a9e2dC2a771C297f88FA9784fa4e31",
+            "0x335DaFb8e708151e7e91C9Fe6F4AF9755877c205",
             "0x2B6656e212f315D3C2DD477FE7EBFb3A86bb1c94",
             "0xF6aEF099e4473E08bed75E0BB1252C4cdAd96416",
-            "0xd714Dd60e22BbB1cbAFD0e40dE5Cfa7bBDD3F3C8"
+            "0x42eefBC05794e71a0f7e7B63E5EcB52320345eBE"
         ],
         "rewardControllersConf": [],
         "hatToken": "0xd86e243fc0007e6226b07c9a50c9d70d78299eb5", // USDC
@@ -373,7 +375,7 @@ module.exports = {
             "0xfe46D9193BBCE8c590298d77b6f8dB0e619c7FF7",
             "0xe24886AC31c25B544092542aD55aa484FbBF506B",
             "0xe707ABbDA8146d2d3f3341E9B375Cb1fc78526d8",
-            "0x9Fb3d86157a9e2dC2a771C297f88FA9784fa4e31",
+            "0x335DaFb8e708151e7e91C9Fe6F4AF9755877c205",
             "0x2B6656e212f315D3C2DD477FE7EBFb3A86bb1c94",
             "0xF6aEF099e4473E08bed75E0BB1252C4cdAd96416",
             "0x42eefBC05794e71a0f7e7B63E5EcB52320345eBE"
