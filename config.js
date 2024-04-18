@@ -189,7 +189,9 @@ module.exports = {
             "merkleTreeIPFSRef": "",
             "root": null,
             "deadline": null
-        }
+        },
+        "deployHackersNFT": false,
+        "deployVaultsNFT": false
     },
     "mainnet": {
         "governance": "0xBA5Ddb6Af728F01E91D77D12073548D823f6D1ef",
@@ -214,7 +216,9 @@ module.exports = {
             "merkleTreeIPFSRef": "",
             "root": null,
             "deadline": null
-        }
+        },
+        "deployHackersNFT": false,
+        "deployVaultsNFT": false
     },
     "optimism": {
         "governance": "0x5A6910528b047d3371970dF764ba4046b7DfAd6a",
@@ -239,7 +243,9 @@ module.exports = {
             "merkleTreeIPFSRef": "",
             "root": null,
             "deadline": null
-        }
+        },
+        "deployHackersNFT": false,
+        "deployVaultsNFT": false
     },
     "arbitrum": {
         "governance": "0x022B95b4c02bbA85604506E6114485615b0aD09A",
@@ -291,7 +297,9 @@ module.exports = {
             "merkleTreeIPFSRef": "",
             "root": null,
             "deadline": null
-        }
+        },
+        "deployHackersNFT": false,
+        "deployVaultsNFT": false
     },
     "base": {
         "governance": "0x5c9d8Fd82a5F0E73384cdfe338ba25F346EEA391",
