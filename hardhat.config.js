@@ -74,7 +74,7 @@ module.exports = {
       gas: "auto",
     },
     bnb: {
-      url: `https://capable-spring-hill.bsc.discover.quiknode.pro/${process.env.QUICKNODE_KEY}`,
+      url: `https://young-small-ensemble.bsc.quiknode.pro/${process.env.QUICKNODE_KEY}`,
       accounts: [process.env.BNB_PK],
       gasPrice: "auto",
       gas: "auto",
