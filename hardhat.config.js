@@ -128,7 +128,7 @@ module.exports = {
       gas: "auto",
     },
     gnosis: {
-      url: `https://rpc.gnosischain.com`,
+      url: `https://tame-winter-sun.xdai.quiknode.pro/45867d2e0dc388c38221af5f19f62fd748756cf2/`,
       accounts: [process.env.GNOSIS_PK],
       gasPrice: "auto",
       gas: "auto",
