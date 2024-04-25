@@ -18,9 +18,14 @@ contract HATAirdropFactory is Ownable {
     using SafeERC20 for IERC20;
 
     mapping(address => bool) public isAirdrop;
+    IHATToken public HAT;
 
     event TokensWithdrawn(address indexed _owner, uint256 _amount);
     event HATAirdropCreated(address indexed _hatAirdrop, bytes _initData, IERC20 _token, uint256 _totalAmount);
+
+    constructor (IHATToken _HAT) {
+        HAT = _HAT;
+    }
 
     function withdrawTokens(IERC20 _token, uint256 _amount) external onlyOwner {
         address owner = msg.sender;
@@ -51,7 +56,6 @@ contract HATAirdropFactory is Ownable {
         IHATAirdrop[] calldata _airdrops,
         uint256[] calldata _amounts,
         bytes32[][] calldata _proofs,
-        address _token,
         address _delegatee,
         uint256 _nonce,
         uint256 _expiry,
@@ -61,7 +65,7 @@ contract HATAirdropFactory is Ownable {
     ) external {
         redeemMultipleAirdrops(_airdrops, _amounts, _proofs);
 
-        IHATToken(_token).delegateBySig(_delegatee, _nonce, _expiry, _v, _r, _s);
+        HAT.delegateBySig(_delegatee, _nonce, _expiry, _v, _r, _s);
     }
 
     function createHATAirdrop(

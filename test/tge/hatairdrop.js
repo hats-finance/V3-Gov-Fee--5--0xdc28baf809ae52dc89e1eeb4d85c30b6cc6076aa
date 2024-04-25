@@ -110,7 +110,7 @@ contract("HATAirdrop", (accounts) => {
     periods = 90;
 
     hatAirdropImplementation = await HATAirdrop.new();
-    hatAirdropFactory = await HATAirdropFactory.new();
+    hatAirdropFactory = await HATAirdropFactory.new(token.address);
 
     initData = IHATAirdrop.encodeFunctionData("initialize", [
       "QmSUXfYsk9HgrMBa7tgp3MBm8FGwDF9hnVaR9C1PMoFdS3",
