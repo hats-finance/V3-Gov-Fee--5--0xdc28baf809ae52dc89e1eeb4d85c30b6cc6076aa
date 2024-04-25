@@ -8,6 +8,8 @@ import "@openzeppelin/contracts/proxy/Clones.sol";
 import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "./interfaces/IHATAirdrop.sol";
+import "../interfaces/IHATToken.sol";
+import "../tokenlock/HATTokenLock.sol";
 
 contract HATAirdropFactory is Ownable {
     error RedeemDataArraysLengthMismatch();
@@ -27,7 +29,7 @@ contract HATAirdropFactory is Ownable {
         emit TokensWithdrawn(owner, _amount);
     }
 
-    function redeemMultipleAirdrops(IHATAirdrop[] calldata _airdrops, uint256[] calldata _amounts, bytes32[][] calldata _proofs) external {
+    function redeemMultipleAirdrops(IHATAirdrop[] calldata _airdrops, uint256[] calldata _amounts, bytes32[][] calldata _proofs) public {
         if (_airdrops.length != _amounts.length || _airdrops.length != _proofs.length) {
             revert RedeemDataArraysLengthMismatch();
         }
@@ -44,6 +46,23 @@ contract HATAirdropFactory is Ownable {
                 ++i;
             }
         }
+    }
+
+    function redeemAndDelegateMultipleAirdrops(
+        IHATAirdrop[] calldata _airdrops,
+        uint256[] calldata _amounts,
+        bytes32[][] calldata _proofs,
+        address _token,
+        address _delegatee,
+        uint256 _nonce,
+        uint256 _expiry,
+        uint8 _v,
+        bytes32 _r,
+        bytes32 _s
+    ) external {
+        redeemMultipleAirdrops(_airdrops, _amounts, _proofs);
+
+        IHATToken(_token).delegateBySig(_delegatee, _nonce, _expiry, _v, _r, _s);
     }
 
     function createHATAirdrop(
