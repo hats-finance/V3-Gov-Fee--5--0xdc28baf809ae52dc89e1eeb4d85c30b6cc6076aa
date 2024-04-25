@@ -308,7 +308,6 @@ contract("HATAirdrop", (accounts) => {
         [hatAirdrop.address, hatAirdrop2.address],
         [amount, amount],
         [proof, proof],
-        token.address,
         accounts[2],
         await token.nonces(wallet.getAddressString()),
         expiry,
